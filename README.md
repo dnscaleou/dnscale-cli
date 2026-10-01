@@ -3,29 +3,99 @@
 Manage DNS zones and records, inspect DNSSEC, and read usage from scripts or a
 terminal. The standalone Go module uses the public DNScale Go SDK.
 
-**Source version: `1.0.0`.** Binary releases and Homebrew installation are not
-published yet. Start with read-only commands and offline validation, then test
-record changes in a disposable zone before using them in production.
+**Current release: `1.0.0`.** Start with read-only commands and offline
+validation, then test record changes in a disposable zone before using them in
+production.
 
-## Build and run
+## Install
 
-Build from the public source repository:
+### Homebrew (macOS and Linux)
 
 ```sh
-git clone https://github.com/dnscaleou/dnscale-cli.git
+brew install dnscaleou/tap/dnscale
+dnscale --version
+```
+
+The [official tap](https://github.com/dnscaleou/homebrew-tap) selects your
+platform's release archive, verifies its checksum, and installs Bash, Zsh, and
+Fish completions. Upgrade with `brew upgrade dnscale`, or uninstall with
+`brew uninstall dnscale`.
+
+### Binary downloads
+
+Download your platform's archive and `checksums.txt` from the
+[1.0.0 release](https://github.com/dnscaleou/dnscale-cli/releases/tag/v1.0.0).
+Prebuilt binaries do not require Go.
+
+| Platform | Archive |
+| --- | --- |
+| macOS Apple Silicon | `dnscale_1.0.0_darwin_arm64.tar.gz` |
+| macOS Intel | `dnscale_1.0.0_darwin_amd64.tar.gz` |
+| Linux ARM64 | `dnscale_1.0.0_linux_arm64.tar.gz` |
+| Linux AMD64 | `dnscale_1.0.0_linux_amd64.tar.gz` |
+| Windows AMD64 | `dnscale_1.0.0_windows_amd64.zip` |
+
+On macOS or Linux, compare the SHA-256 hash with the matching line in
+`checksums.txt` before extracting. For example, on Apple Silicon:
+
+```sh
+shasum -a 256 dnscale_1.0.0_darwin_arm64.tar.gz
+tar -xzf dnscale_1.0.0_darwin_arm64.tar.gz
+mkdir -p "$HOME/.local/bin"
+install -m 755 dnscale "$HOME/.local/bin/dnscale"
+export PATH="$HOME/.local/bin:$PATH"
+dnscale --version
+```
+
+Use the archive name for your platform. Linux also provides `sha256sum` for
+verification. Add the PATH setting to your shell startup file to keep it
+across sessions. Archives include the quickstart and example record files.
+
+On Windows, compare the hash with `checksums.txt`, then extract the archive
+and add the destination directory to your user PATH:
+
+```powershell
+Get-FileHash .\dnscale_1.0.0_windows_amd64.zip -Algorithm SHA256
+Expand-Archive .\dnscale_1.0.0_windows_amd64.zip -DestinationPath "$env:LOCALAPPDATA\DNScale\bin" -Force
+& "$env:LOCALAPPDATA\DNScale\bin\dnscale.exe" --version
+```
+
+### Install with Go
+
+With Go 1.25 or newer:
+
+```sh
+go install github.com/dnscaleou/dnscale-cli/cmd/dnscale@v1.0.0
+```
+
+Add `GOBIN`, or the `bin` directory under `go env GOPATH` when `GOBIN` is unset,
+to your PATH.
+
+### Build from source
+
+```sh
+git clone --branch v1.0.0 https://github.com/dnscaleou/dnscale-cli.git
 cd dnscale-cli
 make build
 bin/dnscale --version
 bin/dnscale --help
 ```
 
-The Go language baseline is 1.25; build/check/release targets pin Go 1.25.14
-using `.go-version` and Go's toolchain selection.
+Build/check/release targets pin Go 1.25.14 using `.go-version` and Go's toolchain
+selection. On Windows, use `go build -o bin/dnscale.exe ./cmd/dnscale`.
 
-Add `bin` to your PATH to use `dnscale` in the examples below. On Windows,
-build `go build -o bin/dnscale.exe ./cmd/dnscale`, or use the Windows archive
-after a release is published. Versioned Go installation, binary downloads, and
-Homebrew instructions will be added after those release channels are verified.
+### Upgrade, remove, and complete commands
+
+For manual installs, download and verify the new archive, then replace the
+binary. Go users can install the desired version tag or use `@latest`.
+Remove the installed binary and completion files to uninstall. Run
+`dnscale auth logout --profile NAME` for each saved profile first if you also
+want to remove its keychain credential; revoke API keys separately in the
+dashboard.
+
+Generate completion with `dnscale completion bash`, `zsh`, `fish`, or
+`powershell`; its help describes installation for each shell. Homebrew installs
+Bash, Zsh, and Fish completions automatically.
 
 ## Authentication
 

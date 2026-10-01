@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.0.0 — unreleased
+## 1.0.0 — 2026-10-01
 
 - Standalone Go CLI with endpoint-bound keychain profiles and environment auth.
 - Zone inventory/creation; record inventory, get, create, update, and selected
@@ -10,5 +10,5 @@
 - API-shaped and compiled-binary tests, plus build/package verification for
   Linux and macOS on amd64/arm64 and Windows on amd64.
 
-Source is published in `dnscaleou/dnscale-cli`. Versioned binary downloads and
-Homebrew installation are not yet available.
+- Versioned archives with SHA-256 checksums for all five platforms, a public
+  `v1.0.0` Go source tag, and Homebrew installation via `dnscaleou/tap/dnscale`.

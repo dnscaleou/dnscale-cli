@@ -1,6 +1,8 @@
 # First DNS workflow
 
-Build the client with `make build` and put `bin` on your PATH.
+Install with `brew install dnscaleou/tap/dnscale`, use a
+[release archive](https://github.com/dnscaleou/dnscale-cli/releases/tag/v1.0.0),
+or follow the [source installation instructions](README.md#install-with-go).
 These commands make real DNS changes when submitted. Use a disposable sandbox
 and a key with zone/record read/write,
 DNSSEC read, and usage read scopes. Replace the example endpoint and domain
