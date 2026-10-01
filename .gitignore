@@ -1,0 +1,6 @@
+/bin/
+/dist/
+/.gocache/
+/.gomodcache/
+__pycache__/
+!/go.sum

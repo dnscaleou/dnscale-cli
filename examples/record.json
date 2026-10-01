@@ -1,0 +1,8 @@
+{
+  "name": "www",
+  "type": "A",
+  "content": "192.0.2.10",
+  "ttl": 300,
+  "disabled": false,
+  "comment": "Managed using the DNScale CLI"
+}
