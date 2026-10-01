@@ -7,6 +7,16 @@ terminal. The standalone Go module uses the public DNScale Go SDK.
 validation, then test record changes in a disposable zone before using them in
 production.
 
+## Repositories and releases
+
+| Resource | Link |
+| --- | --- |
+| CLI source and issues | [dnscaleou/dnscale-cli](https://github.com/dnscaleou/dnscale-cli) |
+| Version 1.0.0 downloads | [Release archives and notes](https://github.com/dnscaleou/dnscale-cli/releases/tag/v1.0.0) |
+| All releases | [Release history](https://github.com/dnscaleou/dnscale-cli/releases) |
+| Homebrew package | [dnscaleou/homebrew-tap](https://github.com/dnscaleou/homebrew-tap) |
+| Homebrew formula | [Formula/dnscale.rb](https://github.com/dnscaleou/homebrew-tap/blob/main/Formula/dnscale.rb) |
+
 ## Install
 
 ### Homebrew (macOS and Linux)
@@ -18,22 +28,22 @@ dnscale --version
 
 The [official tap](https://github.com/dnscaleou/homebrew-tap) selects your
 platform's release archive, verifies its checksum, and installs Bash, Zsh, and
-Fish completions. Upgrade with `brew upgrade dnscale`, or uninstall with
-`brew uninstall dnscale`.
+Fish completions. Run `brew update` followed by `brew upgrade dnscale` to
+upgrade, or `brew uninstall dnscale` to remove it.
 
 ### Binary downloads
 
-Download your platform's archive and `checksums.txt` from the
+Download your platform's archive and [checksums.txt](https://github.com/dnscaleou/dnscale-cli/releases/download/v1.0.0/checksums.txt) from the
 [1.0.0 release](https://github.com/dnscaleou/dnscale-cli/releases/tag/v1.0.0).
 Prebuilt binaries do not require Go.
 
 | Platform | Archive |
 | --- | --- |
-| macOS Apple Silicon | `dnscale_1.0.0_darwin_arm64.tar.gz` |
-| macOS Intel | `dnscale_1.0.0_darwin_amd64.tar.gz` |
-| Linux ARM64 | `dnscale_1.0.0_linux_arm64.tar.gz` |
-| Linux AMD64 | `dnscale_1.0.0_linux_amd64.tar.gz` |
-| Windows AMD64 | `dnscale_1.0.0_windows_amd64.zip` |
+| macOS Apple Silicon | [dnscale_1.0.0_darwin_arm64.tar.gz](https://github.com/dnscaleou/dnscale-cli/releases/download/v1.0.0/dnscale_1.0.0_darwin_arm64.tar.gz) |
+| macOS Intel | [dnscale_1.0.0_darwin_amd64.tar.gz](https://github.com/dnscaleou/dnscale-cli/releases/download/v1.0.0/dnscale_1.0.0_darwin_amd64.tar.gz) |
+| Linux ARM64 | [dnscale_1.0.0_linux_arm64.tar.gz](https://github.com/dnscaleou/dnscale-cli/releases/download/v1.0.0/dnscale_1.0.0_linux_arm64.tar.gz) |
+| Linux AMD64 | [dnscale_1.0.0_linux_amd64.tar.gz](https://github.com/dnscaleou/dnscale-cli/releases/download/v1.0.0/dnscale_1.0.0_linux_amd64.tar.gz) |
+| Windows AMD64 | [dnscale_1.0.0_windows_amd64.zip](https://github.com/dnscaleou/dnscale-cli/releases/download/v1.0.0/dnscale_1.0.0_windows_amd64.zip) |
 
 On macOS or Linux, compare the SHA-256 hash with the matching line in
 `checksums.txt` before extracting. For example, on Apple Silicon:
